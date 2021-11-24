@@ -17,16 +17,16 @@ class AreaSeeder extends Seeder
     public function run()
     {
         DB::table('areas')->insert([
-            'nombre_area' => 'Rectoria',
-	        'titular' => 'Ruth Padilla',
-	        'informacion' => 'Protocolo rectoria',
+            'nombre_area' => 'Servidores',
+	        'titular' => 'Cesar Ascencio',
+	        'informacion' => 'Cloud computing',
 	        'telefono' => '1234567'
         ]);
 
         Area::create([
-            'nombre_area' => 'Coord. Computacion',
-	        'titular' => 'Martha',
-	        'informacion' => 'Ayuda en procesos',
+            'nombre_area' => 'Paginas web',
+	        'titular' => 'Sonia Garcia',
+	        'informacion' => 'Desarrollo de paginas web',
 	        'telefono' => '98765'
         ]);
 

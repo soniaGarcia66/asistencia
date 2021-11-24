@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Persona extends Model
 {
     use HasFactory;
-    protected $fillable = [//LISTA DE COLUMNAS/CAMPOS ACEPTADOS
+    use SoftDeletes;
+    
+    protected $fillable = [//LISTA DE COLUMNAS PERMITIDAS/CAMPOS ACEPTADOS
         'user_id', //OPC 2
         'nombre',
         'apellido_paterno',
@@ -16,6 +19,9 @@ class Persona extends Model
         'codigo',
         'correo',
         'telefono',
+        'archivo_original',
+        'archivo_ruta',
+        'mime',
     ];
 
     public function user() // nombre del modelo en singular ya que una persona solo puede pertenecer a un usuario
@@ -25,5 +31,15 @@ class Persona extends Model
 
     public function areas(){
         return $this->belongsToMany(Area::class);
+    }
+
+    public function getNombreCompletoAttribute()
+    {
+        return $this->nombre . ' ' . $this->apellido_paterno . ' ' . $this->apellido_materno;
+    }
+
+    public function setNombreAttribute($nombre)
+    {
+        return $this->attributes['nombre'] =strtoupper($nombre);
     }
 }

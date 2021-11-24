@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio con Layout</title>
+    <title>CS4You Site</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset("css/all.min.css") }}">
+    
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset("css/adminlte.min.css") }}">
+
+    <script src="https://kit.fontawesome.com/780d1b883d.js" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -161,8 +164,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="../../index3.html" class="brand-link">
-        
-            <span class="brand-text font-weight-light">Proyecto</span>
+                <img src="{{ asset ("CS4YouLogo.png")}}" class="brand-image img-square elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">CS4You</span>
             </a>
 
             <!-- Sidebar -->
@@ -170,7 +173,7 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                <a href="#" class="d-block">Usuario</a>
+                <a href="#" class="d-block">Menu</a>
                 </div>
             </div>
 
@@ -193,25 +196,40 @@
                     with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <a href="{{ route("persona") }}" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Ver Personas
+                            Ver Clientes
                         </p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route("persona.create") }}" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon far fa-user"></i>
                         <p>
-                            Crear Persona
+                            Registrar Cliente
                         </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route("persona") }}" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                        <a href="{{ route("service.index") }}" class="nav-link">
+                        <i class="nav-icon fas fa-toolbox"></i>
                         <p>
-                            Personas
+                            Servicios
+                        </p>
+                        </a>
+                    </li><li class="nav-item">
+                        <a href="{{ route("project.index") }}" class="nav-link">
+                        <i class="nav-icon fas fa-folder"></i>
+                        <p>
+                            Ver Proyectos
+                        </p>
+                        </a>
+                    </li>
+                    </li><li class="nav-item">
+                        <a href="{{ route("project.create") }}" class="nav-link">
+                        <i class="nav-icon fas fa-folder-plus"></i>
+                        <p>
+                            Registrar Proyecto
                         </p>
                         </a>
                     </li>
@@ -263,7 +281,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-          Footer
+          Computational Solutions For You. ;)
         </div>
         <!-- /.card-footer-->
       </div>

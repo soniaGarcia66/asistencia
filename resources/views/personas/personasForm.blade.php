@@ -20,7 +20,7 @@
       <!-- general form elements -->
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Quick Example</h3>
+          <h3 class="card-title">Llenar los campos siguientes:</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -28,7 +28,7 @@
             <form action="{{ route('persona.update', $persona) }}" method="POST">
             @method('PATCH')
         @else
-            <form action="{{ route('persona.store') }}" method="POST">
+            <form action="{{ route('persona.store') }}" method="POST" enctype="multipart/form-data">
         @endif
         
           @csrf 
@@ -58,7 +58,7 @@
             <label for="telefono">Telefono</label>
             <input type="number" class="form-control" id="telefono" name="telefono" placeholder="telefono" value="{{ $persona->telefono ?? ''}}">
             </div>
-            <label for="area_id">Area:</label>
+            <label for="area_id">Servicio:</label>
             <select name="area_id[]" id="area_id" multiple>
                 @foreach($areas as $area)
                     <option value="{{ $area->id }}" {{ isset($persona) && array_search($area->id, $persona->areas->pluck('id')->toArray()) !== false ? 'selected' : '' }}>
@@ -67,7 +67,9 @@
                 @endforeach
             </select>
           <!-- /.card-body -->
-
+            <br>
+            <input type="file" name="archivo">
+            <br>
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>

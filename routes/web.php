@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 //SOLUCION A(Target class [PersonasController] does not exist):
 use App\Http\Controllers\PersonaController;
-
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,13 @@ Route::post('/personas/create', [PersonaController::class, 'store']);
 //OPTAR POR: (asume q en el controlador tenemos todoslos metodos 
 //anteriores ylos gnera Automaticamente pra no tner q hacerlo a mano)
 
+Route::get('descargar-archivo/{persona}', [PersonaController::class, 'descargarArchivo'])
+    ->name('descargar');
+
 Route::resource('persona', PersonaController::class)->middleware('auth');//IMPORTANTE. despues se agrego el middleware
+
+Route::resource('service', ServiceController::class);
+Route::resource('project', ProjectController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

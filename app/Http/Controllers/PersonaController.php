@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 //use Illuminate\Support\Facades\DB;//agregue esto, no funciono
@@ -60,13 +61,20 @@ class PersonaController extends Controller
             //'correo' => 'email|max:255',
             'telefono' => 'max:50',
         ]);
+        // $request->file('archivo);
+        $ruta = $request->archivo->store('imagenes');
+        $mime = $request->archivo->getClientMimeType();
+        $nombre_original = $request->archivo->getClientOriginalName();
+
         //Crear registro utilizando modelo
         //dd($request->all());
-
         //$persona = new Persona($request->all()); //OPC 1
         //Auth::user()->personas()->save($persona);
 
         $request->merge([ //OPC 2
+            'archivo_original' => $nombre_original,
+            'archivo_ruta' => $ruta,
+            'mime' => $mime,
             'user_id' => Auth::id(), //Proporciona la info del usuario que no viene en el formulario para que la tenga en el request y la pueda insertar y asignar lo de el usuario loggeado
             'apellido_materno' => $request->apellido_materno ?? ''
         ]);
@@ -75,7 +83,7 @@ class PersonaController extends Controller
 
         /*
         $persona = new Persona();
-        $persona->nombre = $request->nombre;
+        $persona->nombre = $request->nombre; 
         $persona->apellido_paterno = $request->apellido_paterno;
         $persona->apellido_materno = $request->apellido_materno ?? '';
         $persona->codigo = $request->codigo ?? '';
@@ -159,5 +167,11 @@ class PersonaController extends Controller
     {
         $persona->delete();
         return redirect()->route('persona.index');
+    }
+
+    public function descargarArchivo(Persona $persona)
+    {
+        $headers = ['Content-Type' => $persona->mime];
+        return Storage::download($persona->archivo_ruta, $persona->archivo_original, $headers);
     }
 }

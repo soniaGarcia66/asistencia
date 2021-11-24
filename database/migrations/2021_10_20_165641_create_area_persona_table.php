@@ -15,7 +15,7 @@ class CreateAreaPersonaTable extends Migration
     {
         Schema::create('area_persona', function (Blueprint $table) {
             $table->foreignId('area_id')->constrained();
-            $table->foreignId('persona_id')->constrained()->onDelete('cascade');//para que nos permita borrar una area 
+            $table->foreignId('persona_id')->constrained()->onDelete('cascade');//para que nos permita borrar una area  
         });
     }
 

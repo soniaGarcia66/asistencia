@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -19,6 +19,7 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -62,5 +63,10 @@ class User extends Authenticatable
     public function personas() //funcion para crear una instancia del usuario y a traves dela instancia del usuario llamar al metodo personas con todas las personas
     {
         return $this->hasMany(Persona::class);//mi modelo users tiene muchas personas
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 }

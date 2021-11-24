@@ -1,6 +1,6 @@
 @extends('layouts.mi-layout')
 
-@section("title", "Listado de personas")
+@section("title", "Listado de Clientes")
 
 @section('contenido')
 
@@ -8,7 +8,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Responsive Hover Table</h3>
+          <h3 class="card-title">Tabla</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
@@ -36,6 +36,7 @@
                 <th>Codigo</th>
                 <th>Correo</th>
                 <th>Telefono</th>
+                <th>Nombre completo</th>
               </tr>
             </thead>
             <tbody>
@@ -62,6 +63,7 @@
                     <td>{{ $persona->codigo }}</td>
                     <td>{{ $persona->correo }}</td>
                     <td>{{ $persona->telefono }}</td>
+                    <td>{{ $persona->nombre_completo }}</td>
                 </tr>
             @endforeach
             </tbody>
